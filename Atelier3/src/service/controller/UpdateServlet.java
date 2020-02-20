@@ -2,6 +2,7 @@ package service.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriBuilder;
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
 
 import service.models.Station;
 
@@ -39,6 +46,16 @@ public class UpdateServlet extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String adresse = request.getParameter("adresse");
 
+		
+		String st= "{\"id_s\":"+id+",\"nom\": \""+nom+"\", \"ville\": \""+ville+"\",\"adresse\": \""+adresse+"\"}";
+		//System.out.println(st);
+		Client client = Client.create(new DefaultClientConfig());
+		URI uri=UriBuilder.fromUri("http://localhost:8080/Ateliers3-RS/").build();
+		ClientResponse resp = client.resource(uri).path("ServiceStation").path("Update").type(MediaType.APPLICATION_JSON).put(ClientResponse.class,st);
+		
+		RequestDispatcher dis =this.getServletContext().getRequestDispatcher("/ReadServlet");
+		dis.forward(request, response);
+		
 		/*
 		 * EntityManager em = LocalEntityManagerFactory.createEntityManager();
 		 * 

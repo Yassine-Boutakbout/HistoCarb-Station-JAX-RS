@@ -3,6 +3,9 @@ package service.models;
 import java.io.Serializable;
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonSetter;
+
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Station{
 
@@ -31,10 +34,11 @@ public class Station{
 	/*
 	 * @OneToMany(mappedBy = "station") List<Station> stations;
 	 */
-	
+	@JsonIgnore
 	public int getId_s() {
 		return id_s;
 	}
+	@JsonSetter
 	public void setId_s(int id_s) {
 		this.id_s = id_s;
 	}

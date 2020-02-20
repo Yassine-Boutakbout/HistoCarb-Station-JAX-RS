@@ -1,11 +1,7 @@
 package service.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URI;
-import java.net.URL;
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,10 +16,6 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 
-import service.models.Carburant;
-import service.models.Station;
-import service.models.HistoCarb;
-import ws.station.CrudStation;
 
 /**
  * Servlet implementation class AjouterIngServlet
@@ -65,8 +57,6 @@ public class CreateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		doGet(request, response);
 	}
-
 }

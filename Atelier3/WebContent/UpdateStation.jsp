@@ -1,4 +1,8 @@
-<%@page import="service.tools.StationFinder"%>
+<%@page import="com.sun.jersey.api.client.*"%>
+<%@page import="com.sun.jersey.api.client.config.*"%>
+<%@page import="org.codehaus.jackson.map.ObjectMapper"%>
+<%@page import="java.net.URI"%>
+<%@page import="javax.ws.rs.core.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="service.models.Station"%>
@@ -17,9 +21,18 @@
 <title>Crud Station | Update</title>
 </head>
 <body>
-	<%String id=request.getParameter("id"); 
+	<%String id=request.getParameter("id");
 	
-	Station st = StationFinder.FindById(id);
+	//Station st = StationFinder.FindById(id);
+	Client client = Client.create(new DefaultClientConfig());
+	URI uri=UriBuilder.fromUri("http://localhost:8080/Ateliers3-RS/").build();
+	ClientResponse resp = client.resource(uri).path("ServiceStation").path("FindbyID/"+id).get(ClientResponse.class);
+
+	String corpsRepHttp= resp.getEntity(String.class);
+	//System.out.println(corpsRepHttp);
+	ObjectMapper mapper = new ObjectMapper();
+	//System.out.println("helooo1"+corpsRepHttp);
+	Station st = mapper.readValue(corpsRepHttp, Station.class);
 	
 	%>
 	<div class="container">

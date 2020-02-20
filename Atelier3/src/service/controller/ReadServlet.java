@@ -1,17 +1,9 @@
 package service.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Stack;
-
-import ws.station.CrudStation;
-
-import javax.annotation.Resource;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -29,7 +20,6 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 
 import service.models.Station;
-import service.models.Stations;
 
 
 /**
