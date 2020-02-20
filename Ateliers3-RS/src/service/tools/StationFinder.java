@@ -15,5 +15,4 @@ public class StationFinder {
 		Station st = em.find(Station.class, Integer.parseInt(id));
 		return st;
 	}
-
 }

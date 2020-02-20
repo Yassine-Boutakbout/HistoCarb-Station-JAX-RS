@@ -1,4 +1,5 @@
 package ws.station;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.persistence.TypedQuery;
 
 import service.models.*;
 import service.tools.LocalEntityManagerFactory;
+import service.tools.StationFinder;
 
 //Service Implementation
 public class CrudStationImpl implements CrudStation
@@ -44,21 +46,38 @@ public class CrudStationImpl implements CrudStation
 	}
 
 	@Override
-	public void UpdateStation(){
+	public void UpdateStation(Station st){
 		// TODO Auto-generated method stub
 		
+		
+		EntityManager em = LocalEntityManagerFactory.createEntityManager();
+		Station sts = em.find(Station.class, st.getId_s());
+		em.getTransaction().begin();
+		sts.setAdresse(st.getAdresse());
+		sts.setNom(st.getNom());
+		sts.setVille(st.getVille());
+		em.getTransaction().commit();
 	}
 
 	@Override
-	public void DeleteStation(){
+	public void DeleteStation(String id){
 		// TODO Auto-generated method stub
-		
+		EntityManager em =LocalEntityManagerFactory.createEntityManager();
+		Station st =FindById(id);
+		Station current = null;
+		em.getTransaction().begin();
+		if (!em.contains(st)) {
+		    current = em.merge(st);
+		}
+		em.remove(current);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 	@Override
 	public Station FindById(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return StationFinder.FindById(id);
 	}
 	
 }
