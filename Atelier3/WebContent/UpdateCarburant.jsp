@@ -4,7 +4,7 @@
 <%@page import="java.net.URI"%>
 <%@page import="javax.ws.rs.core.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@page import="service.models.Station"%>
+<%@page import="service.models.Carburant"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,42 +25,35 @@
 	//Station st = StationFinder.FindById(id);
 	Client client = Client.create(new DefaultClientConfig());
 	URI uri=UriBuilder.fromUri("http://localhost:8080/Ateliers3-RS/").build();
-	ClientResponse resp = client.resource(uri).path("ServiceStation").path("FindbyID/"+id).get(ClientResponse.class);
+	ClientResponse resp = client.resource(uri).path("ServiceCarburant").path("FindbyID/"+id).get(ClientResponse.class);
 
 	String corpsRepHttp= resp.getEntity(String.class);
 	//System.out.println(corpsRepHttp);
 	ObjectMapper mapper = new ObjectMapper();
 	//System.out.println("helooo1"+corpsRepHttp);
-	Station st = mapper.readValue(corpsRepHttp, Station.class);
+	Carburant cb = mapper.readValue(corpsRepHttp, Carburant.class);
 	
 	%>
 	<div class="container">
-		<h1>Station Crud Update</h1>
+		<h1>Carburant Crud Update</h1>
 		<br>
 		<h2>UPDATE</h2>
-		<form action="UpdateStation" method="post">
+		<form action="UpdateCarburant" method="post">
 		
 					<input type="hidden" name="id" class="form-control" id="name" placeholder="Enter Name" value="<%=id%>">
 					
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="email">Nom:</label>
 				<div class="col-sm-10">
-					<input type="text" name="nom" class="form-control" id="name" placeholder="Enter Name" value="<%=st.getNom()%>">
+					<input type="text" name="nom" class="form-control" id="name" placeholder="Enter Name" value="<%=cb.getNom()%>">
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">Ville:</label>
+				<label class="control-label col-sm-2" for="pwd">Description:</label>
 				<div class="col-sm-10">
 
-					<input type="text" class="form-control" id="cty" placeholder="Enter City" name="ville" value="<%=st.getVille()%>">
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">Adresse:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="addr" placeholder="Enter Address" name="adresse" value="<%=st.getAdresse()%>">
+					<input type="text" class="form-control" id="cty" placeholder="Enter Description" name="desc" value="<%=cb.getDescription()%>">
 				</div>
 			</div>
 			

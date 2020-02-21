@@ -21,7 +21,7 @@
 		<h1>Station Crud</h1>
 		<br>
 		<h2>CREATE</h2>
-		<form action="CreateServlet" method="post">
+		<form action="CreateStation" method="post">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="email">Nom:</label>
 				<div class="col-sm-10">
@@ -79,7 +79,7 @@
 				<td><%=var.getNom()%></td>
 				<td><%=var.getVille()%></td>
 				<td><%=var.getAdresse()%></td>
-				<td style="text-align:center;" ><a href="UpdateStation.jsp?id=<%=var.getId_s()%>" class="btn btn-warning">Edit</a> <a href='RemoveServlet?id=<%=var.getId_s()%>' class="btn btn-danger">Delete</a></td>
+				<td style="text-align:center;" ><a href="UpdateStation.jsp?id=<%=var.getId_s()%>" class="btn btn-warning">Edit</a> <a href='RemoveStation?id=<%=var.getId_s()%>' class="btn btn-danger">Delete</a></td>
 			</tr>
 			<%
 				}

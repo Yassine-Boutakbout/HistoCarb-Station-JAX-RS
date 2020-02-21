@@ -10,7 +10,9 @@
 <h5> Hello</h5>
 
 <h3>CrudStation</h3>
-<a href="ReadServlet">StationCrud</a>
+<a href="ReadStation">Station Crud</a>
 
+<h3>CrudStation</h3>
+<a href="ReadCarburant">Carburant Crud</a>
 </body>
 </html>
