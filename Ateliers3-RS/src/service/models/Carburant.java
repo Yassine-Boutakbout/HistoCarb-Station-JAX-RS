@@ -23,10 +23,10 @@ public class Carburant implements Serializable{
 	}
 	
 	
-	public Carburant(String nom, String decription) {
+	public Carburant(String nom, String description) {
 		super();
 		this.nom = nom;
-		this.decription = decription;
+		this.description = description;
 	}
 
 	
@@ -38,8 +38,35 @@ public class Carburant implements Serializable{
 	private String nom;
 	
 	@Column(nullable = true, length=2550)
-	private String decription;
+	private String description;
 	
 	@OneToMany(mappedBy = "carburant", fetch = FetchType.LAZY)
 	private List<HistoCarb> hcs;
+
+	
+	
+	public int getId_c() {
+		return id_c;
+	}
+
+	public void setId_c(int id_c) {
+		this.id_c = id_c;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 }

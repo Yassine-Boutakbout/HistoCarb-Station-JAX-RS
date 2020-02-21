@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -16,60 +15,59 @@ import javax.ws.rs.core.MediaType;
 
 import com.sun.jersey.spi.resource.Singleton;
 
-import rs.station.CrudStationImpl;
-import service.models.Station;
+import rs.carburant.CrudCarburantImpl;
+import service.models.Carburant;
 
 @Singleton
-@Path("/ServiceStation")
-public class ServiceStation {
+@Path("/ServiceCarburant")
+public class ServiceCarburant {
 	
-	private CrudStationImpl crudstation = new CrudStationImpl();
+	private CrudCarburantImpl crudcarburant = new CrudCarburantImpl();
 	
 	@GET
 	@Path("/Read")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Station> ReadStation()
+	public List<Carburant> ReadCarburant()
 	{
-		return crudstation.ReadStation();
+		return crudcarburant.ReadCarburant();
 	}
 	
 	@POST
 	@Path("/Create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Station CreateStation(Station st)
+	public Carburant CreateCarburant(Carburant cb)
 	{
-		crudstation.CreateStation(st);
-		return st;
+		crudcarburant.CreateCarburant(cb);
+		return cb;
 	}
-	
 	
 	@GET
 	@Path("FindbyID/{id}")
 	//@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Station FindByID(@PathParam(value="id")String id)
+	public Carburant FindByID(@PathParam(value="id")String id)
 	{
-		return crudstation.FindById(id);
+		return crudcarburant.FindById(id);
 	}
 	
 	@PUT
 	@Path("Update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Station UpdateStation(Station st)
+	public Carburant UpdateCarburant(Carburant cb)
 	{
-		crudstation.UpdateStation(st);
-		return st;
+		crudcarburant.UpdateCarburant(cb);
+		return cb;
 	}
 	
 	@DELETE
 	@Path("Delete")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void DeleteStation(@QueryParam(value="id") String id)
+	public void DeleteCarburant(@QueryParam(value="id") String id)
 	{
 		//System.out.println("hellloooo");
-		crudstation.DeleteStation(id);
+		crudcarburant.DeleteCarburant(id);
 	}
 }
